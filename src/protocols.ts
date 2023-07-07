@@ -26,3 +26,7 @@ export type CEPAddress = {
   cidade: string;
   uf: string;
 };
+
+export type TicketTypeId = {
+  ticketTypeId: number;
+};
