@@ -29,11 +29,17 @@ async function getTicketById(id: number) {
   return ticket;
 }
 
+async function getTicketTypeById(id: number) {
+  const type = await ticketsRepository.getTicketTypeById(id);
+  return type;
+}
+
 const ticketsService = {
   getTicketTypes,
   getTicketsByUserId,
   createTicket,
   getTicketById,
+  getTicketTypeById,
 };
 
 export default ticketsService;

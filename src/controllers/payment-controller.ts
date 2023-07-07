@@ -2,6 +2,7 @@ import { Response } from 'express';
 import httpStatus from 'http-status';
 import { AuthenticatedRequest } from '@/middlewares';
 import paymentService from '@/services/payment-service';
+import { PaymentBody } from '@/protocols';
 
 export async function getPaymentByTicketId(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
@@ -12,5 +13,13 @@ export async function getPaymentByTicketId(req: AuthenticatedRequest, res: Respo
   }
 
   const payment = await paymentService.getPaymentByTicketId(Number(ticketId), userId);
+  res.status(httpStatus.OK).send(payment);
+}
+
+export async function createPayment(req: AuthenticatedRequest, res: Response) {
+  const body = req.body as PaymentBody;
+  const userId = req.userId;
+
+  const payment = await paymentService.createPayment(body, userId);
   res.status(httpStatus.OK).send(payment);
 }

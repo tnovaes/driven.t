@@ -19,7 +19,6 @@ async function createTicket(ticketTypeId: number, enrollmentId: number) {
       ticketTypeId,
       enrollmentId,
       status: 'RESERVED',
-      updatedAt: new Date(Date.now()),
     },
   });
 }
@@ -30,11 +29,28 @@ async function getTicketById(id: number) {
   });
 }
 
+async function getTicketTypeById(id: number) {
+  return prisma.ticketType.findFirst({
+    where: { id },
+  });
+}
+
+async function updateTicket(id: number) {
+  return prisma.ticket.update({
+    data: {
+      status: 'PAID',
+    },
+    where: { id },
+  });
+}
+
 const ticketsRepository = {
   getTicketTypes,
   getTicketsByEnrollmentId,
   createTicket,
   getTicketById,
+  getTicketTypeById,
+  updateTicket,
 };
 
 export default ticketsRepository;
