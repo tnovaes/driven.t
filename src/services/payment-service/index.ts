@@ -1,8 +1,7 @@
-import httpStatus from 'http-status';
 import ticketsService from '../tickets-service';
 import enrollmentsService from '../enrollments-service';
 import paymentRepository from '@/repositories/payment-repository';
-import { invalidTicketError, notFoundError, requestError } from '@/errors';
+import { invalidTicketError } from '@/errors';
 import { PaymentBody } from '@/protocols';
 import ticketsRepository from '@/repositories/tickets-repository';
 

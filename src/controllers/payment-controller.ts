@@ -17,8 +17,8 @@ export async function getPaymentByTicketId(req: AuthenticatedRequest, res: Respo
 }
 
 export async function createPayment(req: AuthenticatedRequest, res: Response) {
-  const body = req.body as PaymentBody;
-  const userId = req.userId;
+  const body: PaymentBody = req.body as PaymentBody;
+  const { userId } = req;
 
   const payment = await paymentService.createPayment(body, userId);
   res.status(httpStatus.OK).send(payment);
