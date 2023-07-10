@@ -7,9 +7,7 @@ export const paymentBodySchema = Joi.object<PaymentBody>({
     issuer: Joi.string().required(),
     number: Joi.number().required(),
     name: Joi.string().required(),
-    expirationDate: Joi.string()
-      .regex(/^(0[1-9]|1[0-2])\/(202[3-9]|[2-9]\d{3})$/)
-      .required(),
+    expirationDate: Joi.string().required(),
     cvv: Joi.number().required(),
   }),
 });

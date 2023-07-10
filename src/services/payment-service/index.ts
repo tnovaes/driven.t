@@ -1,7 +1,7 @@
 import ticketsService from '../tickets-service';
 import enrollmentsService from '../enrollments-service';
 import paymentRepository from '@/repositories/payment-repository';
-import { invalidTicketError } from '@/errors';
+import { invalidTicketError, notFoundError } from '@/errors';
 import { PaymentBody } from '@/protocols';
 import ticketsRepository from '@/repositories/tickets-repository';
 
