@@ -20,8 +20,34 @@ async function getHotels(userId: number) {
   return hotels;
 }
 
+async function getHotelRooms(userId: number, hotelId: number) {
+  await getHotels(userId);
+
+  const hotel = await hotelsRepository.getHotelWithRooms(hotelId);
+  if (!hotel) throw notFoundError();
+
+  const result = {
+    id: hotel.id,
+    name: hotel.name,
+    image: hotel.image,
+    createdAt: hotel.createdAt.toISOString(),
+    updatedAt: hotel.updatedAt.toISOString(),
+    Rooms: hotel.Rooms.map((room) => ({
+      id: room.id,
+      name: room.name,
+      capacity: room.capacity,
+      hotelId: room.hotelId,
+      createdAt: room.createdAt.toISOString(),
+      updatedAt: room.updatedAt.toISOString(),
+    })),
+  };
+
+  return result;
+}
+
 const hotelsService = {
   getHotels,
+  getHotelRooms,
 };
 
 export default hotelsService;
