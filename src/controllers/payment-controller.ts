@@ -6,7 +6,7 @@ import { PaymentBody } from '@/protocols';
 
 export async function getPaymentByTicketId(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
-  const ticketId = req.query.ticketId as unknown as number;
+  const ticketId = Number(req.query.ticketId);
 
   if (!ticketId) {
     return res.sendStatus(httpStatus.BAD_REQUEST);
