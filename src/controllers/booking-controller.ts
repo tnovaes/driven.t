@@ -6,6 +6,7 @@ import { BookingBody } from '@/protocols';
 
 export async function getBooking(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
+
   const booking = await bookingService.getBooking(userId);
   res.status(httpStatus.OK).send(booking);
 }
@@ -14,6 +15,15 @@ export async function createBooking(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
   const { roomId } = req.body as BookingBody;
 
-  const booking = await bookingService.createBooking(userId, roomId);
-  res.status(httpStatus.OK).send(booking);
+  const bookingId = await bookingService.createBooking(userId, roomId);
+  res.status(httpStatus.OK).send(bookingId);
+}
+
+export async function updateBooking(req: AuthenticatedRequest, res: Response) {
+  const { userId } = req;
+  const { roomId } = req.body as BookingBody;
+  const bookingId = Number(req.params.bookingId);
+
+  const updatedBookingId = await bookingService.updateBooking(userId, roomId, bookingId);
+  res.status(httpStatus.OK).send(updatedBookingId);
 }
