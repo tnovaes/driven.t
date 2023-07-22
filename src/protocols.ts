@@ -43,3 +43,7 @@ export type PaymentBody = {
   ticketId: number;
   cardData: CardData;
 };
+
+export type BookingBody = {
+  roomId: number;
+};
